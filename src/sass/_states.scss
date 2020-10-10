@@ -1,5 +1,48 @@
-.loading{
-    @keyframes loading{
-    
+.loading {
+  @keyframes loading {
+    25% { -webkit-transform: translateX(100%) rotate(-90deg) scale(0.5) }
+    50% { -webkit-transform: translateX(100%) translateY(100%) rotate(-180deg) }
+    75% { -webkit-transform: translateX(0px) translateY(100%) rotate(-270deg) scale(0.5) }
+    100% { -webkit-transform: rotate(-360deg) }
+  }
+
+  &::before, &::after{
+    content: "";
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: loading 1.8s infinite ease-in-out;
+  }
+
+  &::after{
+    animation-delay: -0.9s;
+  }
+
+}
+
+.transition {
+  transition: 0.3s ease;
+}
+
+.hover {
+  &--sizeup {
+    &:hover {
+      transform: scale(1.25);
+
+      @include media-breakpoint-up(sm) {
+        transform: scale(1.15);
+      }
     }
+  }
+}
+
+.focus {
+  &--boxshadow {
+    &:focus, &:active {
+      box-shadow: 0 0 0 5px rgba($clr-red, 0.2);
+    }
+  }
 }
