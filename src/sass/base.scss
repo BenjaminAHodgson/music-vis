@@ -1,9 +1,9 @@
 /**
 ** Prerequisites.
 **/
-@import "vendor/custom-vars.scss";
+@import "vendor/custom-vars";
 @import "vendor/bootstrap";
-@import "mixins.scss";
+@import "mixins";
 
 /**
 ** Components
@@ -15,7 +15,8 @@
 /**
 ** Globals
 **/
-@import "main.scss";
+@import "main";
+@import "states";
 
 
 

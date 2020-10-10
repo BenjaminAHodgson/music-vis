@@ -8,7 +8,7 @@ function App()  {
     <div className="App">
       <header className="App-header">
         <div className="Current-Song blob">
-          <button  onClick={core.Play}>Play</button>
+          <button onClick={core.BtnPlay}>Play</button>
         </div>
       </header>
     </div>
