@@ -1,0 +1,37 @@
+/* SASS Vars */
+
+$clr-darkred: #862633;
+$clr-red: #A6093D;
+$clr-pink: #EE9190;
+$clr-midred: #c1003B;
+$clr-lightred: #DBC9C9;
+$clr-blue: #182D7F;
+$clr-lightblue: #2E47A7;
+$clr-darkbrown: #3F3434;
+$clr-brown: #9F9282;
+$clr-medbrown: #C3B9A5;
+$clr-lightbrown: #EEEAE1;
+$clr-lighterbrown: #F9F8F8;
+
+$brdr-light: #EBE6DB;
+$brdr-light-hover: #862633;
+
+$clr-darkgrey: #3B3B3B;
+$clr-midgrey: #545859;
+
+$font-hero: hero-new, sans-serif; // use $font-family-base
+$font-colby: 'Colby', sans-serif; // use $headings-font-family
+$font-sofa: 'Sofa Sans', sans-serif;
+$font-sofa-mono: 'Sofa Sans Mono', monospace;
+
+$light-grey: #D4D0D0;
+$white: #ffffff;
+$light-white: #eae6dc;
+
+// Customization Bootstrap vars from "app/libs/bootstrap/scss/_variables.scss"
+$grid-gutter-width: 30px;
+$grid-columns: 12;
+$grid-breakpoints: (xs: 0, sm: 576px, md: 768px, lg: 992px, xl: 1200px);
+$container-max-widths: (sm: 540px, md: 720px, lg: 960px, xl: 1140px);
+
+$gutter: $grid-gutter-width;
