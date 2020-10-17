@@ -1,0 +1,31 @@
+#root{
+
+    .component{
+        transform: translateY(-40%);
+        opacity: 0;
+        transition: 0.5s ease;
+
+        &--lengthwise{
+            @keyframes lengthwise {
+                0%{background-position:0% 50%}
+                100%{background-position:100% 50%}
+            }
+            background: linear-gradient(270deg, #246655, #ffffff );
+            background-size: 400% 400%;
+
+        }
+    }
+
+    &.ready{
+        .component{
+            transform: translateY(0);
+            opacity: 1;
+            transition: 0.5s ease;
+
+            &--lengthwise{
+                animation: lengthwise 3.25s ease;
+                animation-fill-mode: forwards;  
+            }
+        }
+    }
+}

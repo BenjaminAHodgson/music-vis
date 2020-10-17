@@ -31,6 +31,12 @@ export function BtnPlay(event){
     Active(event);
 }
 
+export function LoadIn(){
+        setTimeout(function(){
+            $("#root").addClass('ready');
+        }, 40);
+}
+
 
 function loading(target){
     $(target).addClass('loading');

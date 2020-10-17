@@ -1,0 +1,15 @@
+.list{
+    display: flex;
+    flex-flow: row wrap;
+    margin: 20px auto;
+    width: 700px;
+    justify-content: space-evenly;
+    background: rgba(green, 0.15);
+    box-shadow: 0px 0px 70px -20px rgba(0,0,0,0.75);
+
+    @include media-breakpoint-up(md){
+        width: 40%;
+        padding: 40px;
+    }
+
+}
