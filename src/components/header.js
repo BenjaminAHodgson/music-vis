@@ -21,9 +21,13 @@ class Header extends Component{
         ]
 
         return (
-             items.map((item, index)  => (
-                <HeaderItem href={item.href} target={item.target} text={item.text} key={index} />
-            ))
+            <header>
+            { 
+                items.map((item, index)  => (
+                    <HeaderItem href={item.href} target={item.target} text={item.text} key={index} />
+                )) 
+            }
+            </header>
         )
     }
 }
