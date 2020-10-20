@@ -23,11 +23,7 @@ class App extends React.Component {
         <div className="App">
           <Header className="App-header" />
           <div className="Content">
-            <div ref={this.myRef} className="component component--lengthwise hover--boxshadow__reverse list">
-              <div className="Current-Song blob hover--sizeup focus--boxshadow transition">
-                <button onClick={core.BtnPlay}>Play</button>
-              </div>
-            </div>
+            
           </div>
         </div>
     );

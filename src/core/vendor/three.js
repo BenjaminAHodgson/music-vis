@@ -14,6 +14,8 @@ var camera = new THREE.PerspectiveCamera(
 var renderer = new WebGLRenderer();
 var geometry = new THREE.BoxGeometry();
 var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+var light = new THREE.AmbientLight( 0x404040 ); // soft white light
+
 var cube = new THREE.Mesh( geometry, material );
 var cubes = [];
 var tree = new window.Tree(
@@ -44,28 +46,38 @@ var tree = new window.Tree(
 
 )
 
+    var trunkGeo = newTreeGeometry(tree);
+    var trunkMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, wireframe: false } );
+    var trunkMesh = new THREE.Mesh(trunkGeo, trunkMaterial);
+
+
 
 
 
 
 export function InitThree() {
 
+  camera.position.set(0, 5, 5);
+  trunkGeo.castShadow = true;
+  trunkMesh.position.setY(-3);
+  light.position.set( 4, -1, 0 );
+  light.castShadow = true; 
+
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.domElement.setAttribute("class", "three");
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap; 
 
    $('.Content').append(renderer.domElement);
   
   scene.background = new THREE.Color('skyblue');
+  scene.add( light );
+
   renderTree(tree);
-  render();
+  moveIn();
 }
 
 function renderTree(){
-    camera.position.z = 5;
-    var trunkGeo = newTreeGeometry(tree);
-    var trunkMaterial = new THREE.MeshLambertMaterial( { color: 0x00ff00, wireframe: false } );
-    var trunkMesh = new THREE.Mesh(trunkGeo, trunkMaterial);
-    trunkMesh.position.setY(-3);
     scene.add(trunkMesh); // Use your own scene
 }
 
@@ -112,5 +124,17 @@ function spawn(){
 
 function render(){
     requestAnimationFrame( render );
+    trunkGeo.rotateY(0.01);
     renderer.render( scene, camera );
+}
+
+
+function moveIn(){ 
+    var handle = requestAnimationFrame( moveIn );
+    camera.translateY(-0.01);
+    renderer.render( scene, camera );
+    if(camera.position.y < 1){
+       cancelAnimationFrame( handle )
+       render();
+    }
 }
