@@ -15,13 +15,17 @@ export class ThreeRuntime {
 
   constructor (threeJSON) {
    Object.assign(this, threeJSON);
+
+   this.moveIn = this.moveIn.bind(this);
+   this.rotate = this.rotate.bind(this);
+   this.lightsMove = this.lightsMove.bind(this)
   }
 
   InitThree () {
-    this.camera.position.set(0, 5, 5)
-    this.trunkGeo.castShadow = true
-    this.trunkMesh.position.setY(-3)
-    this.light.position.set(4, -1, 0)
+    this.camera.position.set(0, 0, 10)
+    this.trunkMesh.castShadow = true
+    this.trunkMesh.scale.multiplyScalar(8)
+    this.trunkMesh.position.set(0, -50, -30)
     this.light.castShadow = true
 
     this.renderer.setSize(window.innerWidth, window.innerHeight)
@@ -31,11 +35,31 @@ export class ThreeRuntime {
 
     $('.Content').append(this.renderer.domElement)
 
-    this.scene.background = new THREE.Color('skyblue')
-    this.scene.add(this.light)
+    this.scene.background = new THREE.Color('darkblue')
 
+    this.lightsON();
+    this.lightsMove();
     this.renderTree(this.tree)
     this.moveIn()
+  }
+
+  lightsON(){
+    const sphere = new THREE.SphereBufferGeometry(0.5, 16, 8)
+    this.light.add(new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: 0xff0040 })));
+    this.scene.add(this.light);
+
+  }
+
+  lightsMove(){
+    requestAnimationFrame(this.lightsMove)
+    const time = Date.now() * 0.0005
+    const delta = this.clock.getDelta()
+
+    this.light.position.x = Math.sin(time * 0.7) * 2
+    this.light.position.y = Math.cos(time * 0.5) * 2
+    this.light.position.z = Math.cos(time * 0.3) * 2
+
+    this.renderer.render(this.scene, this.camera)
   }
 
   renderTree () {
@@ -48,8 +72,8 @@ export class ThreeRuntime {
   }
 
 
-  render () {
-    requestAnimationFrame(this.render)
+  rotate () {
+    requestAnimationFrame(this.rotate)
     this.trunkGeo.rotateY(0.01)
     this.renderer.render(this.scene, this.camera)
   }
@@ -58,9 +82,9 @@ export class ThreeRuntime {
     var handle = requestAnimationFrame(this.moveIn)
     this.camera.translateY(-0.01)
     this.renderer.render(this.scene, this.camera)
-    if (this.camera.position.y < 1) {
+    if (this.camera.position.y < -50) {
       cancelAnimationFrame(handle)
-      this.render()
+      this.rotate()
     }
   }
 }

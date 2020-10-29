@@ -13,7 +13,7 @@ class App extends React.Component {
 
   componentDidMount() {
     core.LoadIn();
-    init.three.InitThree();
+    init.threeRunner.InitThree();
     animate.collectAudio();
   }
 
